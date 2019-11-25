@@ -1,0 +1,50 @@
+#include "Star.h"
+
+using namespace std;
+
+void gotoxy(int x, int y)
+{
+	COORD Pos = { x , y };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Pos);
+}
+void Star::StarFall(Star& a)
+{
+	int i = 1;
+	
+	while (1)
+	{
+		if (i == 1)
+		{
+			gotoxy(pos->s_iX, i);
+			cout << '@' << endl;
+		}
+		else if (i <= m_iY)
+		{
+			gotoxy(pos->s_iX, i);
+			cout << '@' << endl;
+
+			gotoxy(pos->s_iX, i);
+			cout << " " << endl;
+
+			Sleep(100);
+		}
+		else if (i > m_iY)
+		{
+			gotoxy(pos->s_iX, i - 1);
+			cout << " " << endl;
+			gotoxy(pos->s_iX, i);
+			cout << " " << endl;
+
+			i = 0;
+			break; //한번의 순환이 끝나면 반복을 정지
+		}
+		i++;
+		
+	}
+}
+int Star::PosX() 
+{
+	srand(time(NULL));
+	int x = rand() % (m_iX - 2);
+	return x + 1;
+}

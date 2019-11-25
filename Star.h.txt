@@ -1,0 +1,26 @@
+#pragma once
+#include <iostream>
+#include <Windows.h>
+#include <time.h>
+
+using namespace std;
+
+struct Starpos
+{
+	int s_iX;
+	int s_iY;
+};
+
+class Star
+{
+	Starpos *pos;
+	int m_iX; //가로의 길이
+	int m_iY; //세로의 길이
+public:
+	Star(int x, int y) : m_iX(x), m_iY(y) { pos = new Starpos[]; };
+	//별의 좌표의 동적 할당을 해줌
+	~Star() { delete[] pos; }
+	void StarFall(Star& a);
+	int PosX();
+
+};
